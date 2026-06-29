@@ -12,7 +12,7 @@
 <div class="hint"><span class="kbd">M</span> music <span class="kbd">H</span> hitboxes <span class="kbd">R</span> menu/reset · P1 <span class="kbd">A/D/W</span> <span class="kbd">J</span> M1 <span class="kbd">K/L/I</span> specials · P2 <span class="kbd">←/→/↑</span> <span class="kbd">1</span> M1 <span class="kbd">2/3/5</span> specials</div>
 <div id="menu" class="overlay"><div class="card">
 <h1>Friends Battlegrounds</h1>
-<p class="muted">Browser-based 2D anime-platform fighting prototype. Dark futuristic arena, glowing floor lights, hit sparks, visible attack hitboxes, cooldown bars, health bars, frame stun text, M1 combos, combo breaker, PvP/PvAI, AI difficulty, intro cutscenes, and stage 2 special upgrades. Fighters are now smaller, faster, jump higher, and are categorized by anime/source inspiration.</p>
+<p class="muted">Browser-based 2D anime-platform fighting prototype. Dark futuristic arena, glowing floor lights, hit sparks, visible attack hitboxes, cooldown bars, health bars, frame stun text, M1 combos, combo breaker, PvP/PvAI, AI difficulty, intro cutscenes, and stage 2 special upgrades. Fighters are smaller, faster, jump higher, categorized by anime, and have cleaned-up intro quotes.</p>
 <div class="row"><button id="modeAI" class="pill on">PvAI</button><button id="modePVP" class="pill">PvP</button><button class="pill on diff" data-diff="easy">Easy</button><button class="pill diff" data-diff="normal">Normal</button><button class="pill diff" data-diff="hard">Hard</button><button class="pill diff" data-diff="boss">Boss</button></div>
 <h2>P1 Fighter</h2><div id="select1" class="grid"></div>
 <h2>P2 / AI Fighter</h2><div id="select2" class="grid"></div>
@@ -24,11 +24,11 @@
 const c=document.getElementById('game'),x=c.getContext('2d');let W,H,D=1;function rs(){W=innerWidth;H=innerHeight;D=Math.min(2,devicePixelRatio||1);c.width=W*D;c.height=H*D;x.setTransform(D,0,0,D,0,0)}addEventListener('resize',rs);rs();
 const C={cyan:'#4ee8ff',pink:'#ff4fd8',yellow:'#ffe66b',green:'#6bff9b',red:'#ff4f64',purple:'#a86cff',orange:'#ff9e3d',blue:'#5c8dff'};
 const R=[
-{id:'tanjiro',anime:'Demon Slayer',n:'Tanjiro',c:C.cyan,q:'I can do it. I have to keep moving forward.',hp:112,spd:6.35,j:18.2,d:7,s:['Water Wheel','Dragon Current','Still Lake Counter'],s2:['Storm Wheel','Sun-Water Dragon','Mirror Lake']},
+{id:'tanjiro',anime:'Demon Slayer',n:'Tanjiro',c:C.cyan,q:"The bond between Nezuko and me can't be severed!",hp:112,spd:6.35,j:18.2,d:7,s:['Water Wheel','Dragon Current','Still Lake Counter'],s2:['Storm Wheel','Sun-Water Dragon','Mirror Lake']},
 {id:'luffy',anime:'One Piece',n:'Luffy',c:C.yellow,q:"I'm the man who will become the king of pirates!",hp:126,spd:6.05,j:17.9,d:8,s:['Rocket Fist','Joy Burst','Bounce Form'],s2:['Comet Fist','Gear 5 Burst','Cloudstep Form']},
 {id:'mahito',anime:'Jujutsu Kaisen',n:'Mahito',c:C.purple,q:'The soul always exists before the body. The shape of the body is defined by the shape of the soul.',hp:104,spd:6.45,j:18.5,d:7,s:['Black Flash Chain','Idle Morph','Mini Domain'],s2:['Triple Black Flash','Soul Morph','Self-Embodiment Domain']},
 {id:'rengoku',anime:'Demon Slayer',n:'Rengoku',c:C.orange,q:'Set your heart ablaze.',hp:116,spd:6.2,j:18.0,d:8,s:['Flame Arc','Meteor Dash','Cinder Guard'],s2:['Blazing Sun Arc','Phoenix Dash','Inferno Guard']},
-{id:'zenitsu',anime:'Demon Slayer',n:'Zenitsu',c:C.blue,q:'Thunder breathing. First form.',hp:98,spd:6.9,j:19.0,d:6,s:['Thunder Step','Arc Chain','Overcharge'],s2:['Godspeed Step','Storm Chain','Blue Overcharge']},
+{id:'zenitsu',anime:'Demon Slayer',n:'Zenitsu',c:C.blue,q:'Thunder Breathing. First Form.',hp:98,spd:6.9,j:19.0,d:6,s:['Thunder Step','Arc Chain','Overcharge'],s2:['Godspeed Step','Storm Chain','Blue Overcharge']},
 {id:'hanami',anime:'Jujutsu Kaisen',n:'Hanami',c:C.green,q:'The forest, the earth, and the sea cannot cry for themselves.',hp:118,spd:5.95,j:17.7,d:7,s:['Root Mine','Thorn Spiral','Flower Field'],s2:['Blooming Minefield','Cursed Bud Vortex','Ceremonial Sea of Light']}
 ];
 let up={};R.forEach(r=>up[r.id]=[0,0,0]);let k={},state='menu',mode='ai',diff='easy',p1i=0,p2i=2,p1,p2,frame=0,hitboxes=1,parts=[],texts=[],projs=[],traps=[],shake=0,freeze=0,cam=0,winner=null,intro=0,arenaW=2500;
